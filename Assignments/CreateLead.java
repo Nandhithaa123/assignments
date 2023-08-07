@@ -1,0 +1,64 @@
+package Assignments;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class CreateLead 
+{
+	public static void main(String[] args) 
+	{
+		//  1.launch the chrome browser 
+		ChromeDriver driver=new ChromeDriver();
+		//  2.launch the application url
+		driver.get("http://leaftaps.com/opentaps/control/main");
+		//  3.maximize the window
+		driver.manage().window().maximize();
+		//  4.enter the username as demosalesmanager
+		driver.findElement(By.id("username")).sendKeys("demosalesmanager");
+		//  5.enter the password as crmsfa
+		driver.findElement(By.name("PASSWORD")).sendKeys("crmsfa");
+		//  6.click on login button using class locator
+		driver.findElement(By.className("decorativeSubmit")).click();
+		//  7.click on crm/sfa link
+		driver.findElement(By.linkText("CRM/SFA")).click();
+		//8.click on leads button
+		driver.findElement(By.linkText("Leads")).click();
+		//9.click on create lead
+		driver.findElement(By.partialLinkText("Create")).click();
+		//10.enter the companyn name as tcs
+		driver.findElement(By.id("createLeadForm_companyName")).sendKeys("TestLeaf");
+		//11.enter the firstname as nandhitha
+		driver.findElement(By.id("createLeadForm_firstName")).sendKeys("Nandhitha");
+		//12.enter the lastname as r
+		driver.findElement(By.id("createLeadForm_lastName")).sendKeys("R");
+		//13.enter the firstname local as nandhu
+		driver.findElement(By.id("createLeadForm_firstNameLocal")).sendKeys("nandhu");
+		//14.enter the department name as testing
+		driver.findElement(By.id("createLeadForm_departmentName")).sendKeys("Testing");
+		//15.enter the decription as test engineer
+		driver.findElement(By.id("createLeadForm_description")).sendKeys("test engineer");
+		//15.entetr the mailid as 20g113nandhitha@gmail.com
+		driver.findElement(By.id("createLeadForm_primaryEmail")).sendKeys("20g113nandhitha@gmail.com");
+		//16. Select State/Province as NewYork Using Visible Text
+		WebElement State = driver.findElement(By.id("createLeadForm_generalStateProvinceGeoId"));
+		Select stateDD = new Select(State);
+		stateDD.selectByVisibleText("New York");
+		 //17.Click on Create Button
+		driver.findElement(By.className("smallSubmit")).click();
+		String text="viewlead | opentaps CRM";
+		String text1=driver.getTitle();
+		if(text.equals(text1))
+		{
+			System.out.println("matches ");
+		}
+		else
+		{
+			System.out.println("not matches");
+			
+		}
+			
+		}
+	}
+
